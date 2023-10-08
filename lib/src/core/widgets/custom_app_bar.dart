@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CustomAppBar extends StatelessWidget implements ObstructingPreferredSizeWidget {
+class CustomAppBar extends StatelessWidget
+    implements ObstructingPreferredSizeWidget {
   final String text;
   const CustomAppBar({
     super.key,
@@ -21,7 +22,11 @@ class CustomAppBar extends StatelessWidget implements ObstructingPreferredSizeWi
     return CupertinoNavigationBar(
       middle: Text(
         text,
-        style: Theme.of(context).textTheme.titleLarge,
+        style: const TextStyle(
+          fontFamily: 'Manrope',
+          fontSize: 15,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }

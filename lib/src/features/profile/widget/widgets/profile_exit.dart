@@ -1,4 +1,5 @@
 import 'package:code_union/src/core/resources/app_colors.dart';
+import 'package:code_union/src/core/resources/app_paddings.dart';
 import 'package:code_union/src/core/widgets/alert.dart';
 import 'package:flutter/material.dart';
 
@@ -13,14 +14,16 @@ class ExitButton extends StatelessWidget {
       onTap: () => AppAlertWidgets.customConfirmDialog(context),
       child: Container(
         color: AppColors.whiteColor,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
+        child: const Padding(
+          padding: AppPaddings.horizontalVericalProfile,
           child: Text(
             'Выйти',
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium
-                ?.copyWith(color: AppColors.redColor),
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
+              color: AppColors.redColor,
+              fontFamily: 'Manrope',
+              fontSize: 16,
+            ),
           ),
         ),
       ),

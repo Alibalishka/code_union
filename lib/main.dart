@@ -5,7 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 
 void main() async {
   await Hive.initFlutter();
-  initHiveAdapters();
+  await initHiveAdapters();
   await initHiveBoxes();
   runApp(const CodeUnionApp());
 }

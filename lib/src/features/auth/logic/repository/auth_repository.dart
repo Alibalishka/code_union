@@ -1,18 +1,18 @@
-import 'package:code_union/src/core/constants/app_urls.dart';
+import 'package:code_union/src/core/dio/app_dio.dart';
+import 'package:code_union/src/features/auth/logic/model/user_model.dart';
 import 'package:dio/dio.dart';
 
 class AuthRepository {
-  Dio dio = Dio();
+  Dio dio = AppDio().dio;
 
-  Future<String> logInUser(String email, String password) async {
+  Future<UserModel> logInUser(String email, String password) async {
     Response response = await dio.post(
-      '${AppUrls.baseUrl}/auth/login',
+      '/auth/login',
       data: {
         "email": email,
         "password": password,
       },
     );
-    // log('Response: ${response.data['tokens']['accessToken']}');
-    return response.data['tokens']['accessToken'].toString();
+    return UserModel.fromJson(response.data);
   }
 }

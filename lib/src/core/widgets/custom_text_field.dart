@@ -1,4 +1,5 @@
 import 'package:code_union/src/core/resources/app_colors.dart';
+import 'package:code_union/src/core/resources/app_paddings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,13 +18,21 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoTextField(
       placeholder: placeholder,
-      placeholderStyle: Theme.of(context)
-          .textTheme
-          .titleMedium
-          ?.copyWith(color: AppColors.gray2Color),
+      placeholderStyle: const TextStyle(
+        color: AppColors.gray2Color,
+        fontFamily: 'Manrope',
+        fontWeight: FontWeight.w400,
+        fontSize: 16,
+      ),
+      style: const TextStyle(
+        color: AppColors.blacColor,
+        fontFamily: 'Manrope',
+        fontWeight: FontWeight.w400,
+        fontSize: 16,
+      ),
       obscureText: isPassword,
       controller: controller,
-      padding: const EdgeInsets.all(19),
+      padding: AppPaddings.horizontalVerical,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.transparent),
       ),

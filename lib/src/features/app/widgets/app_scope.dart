@@ -1,7 +1,5 @@
 import 'package:code_union/src/features/auth/logic/bloc/auth_bloc.dart';
 import 'package:code_union/src/features/auth/logic/repository/auth_repository.dart';
-import 'package:code_union/src/features/profile/logic/bloc/profile_bloc.dart';
-import 'package:code_union/src/features/profile/logic/repository/profile_repository.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,9 +22,6 @@ class _AppScopeState extends State<AppScope> {
         providers: [
           BlocProvider<AuthBloc>(
             create: (_) => AuthBloc(authRepository: AuthRepository()),
-          ),
-          BlocProvider<ProfileBloc>(
-            create: (_) => ProfileBloc(profileRepository: ProfileRepository()),
           ),
         ],
         child: widget.child,
