@@ -24,56 +24,61 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: const CustomAppBar(text: 'Авторизация'),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            color: AppColors.whiteColor,
-            child: Column(
-              children: [
-                CustomTextField(
-                  placeholder: 'Логин или почта',
-                  controller: emailController,
-                ),
-                const AuthDivider(),
-                CustomTextField(
-                  placeholder: 'Пароль',
-                  isPassword: true,
-                  controller: passwordController,
-                ),
-              ],
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: CupertinoPageScaffold(
+        navigationBar: const CustomAppBar(text: 'Авторизация'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              color: AppColors.whiteColor,
+              child: Column(
+                children: [
+                  CustomTextField(
+                    placeholder: 'Логин или почта',
+                    controller: emailController,
+                  ),
+                  const AuthDivider(),
+                  CustomTextField(
+                    placeholder: 'Пароль',
+                    isPassword: true,
+                    controller: passwordController,
+                  ),
+                ],
+              ),
             ),
-          ),
-          const ColumnSpacer(3.2),
-          BlocConsumer<AuthBloc, AuthState>(
-            listener: (context, state) {
-              state is LogInSuccess
-                  ? context.router.replace(const AppIndexScreenRoute())
-                  : null;
-              state is LogInFailed
-                  ? AppAlertWidgets.customAlert(context, AuthAlertText.login)
-                  : null;
-            },
-            builder: (context, state) {
-              return CustomButton(
-                onPressed: () => context.read<AuthBloc>().add(LogInUser(
-                      email: emailController.text,
-                      password: passwordController.text,
-                    )),
-                text: state is LogInLoading ? 'Загрузка..' : 'Войти',
-              );
-            },
-          ),
-          const ColumnSpacer(1),
-          CustomButton(
-            onPressed: () =>
-                AppAlertWidgets.customAlert(context, AuthAlertText.register),
-            text: 'Зарегистрироваться',
-          ),
-        ],
+            const ColumnSpacer(3.2),
+            BlocConsumer<AuthBloc, AuthState>(
+              listener: (context, state) {
+                state is LogInSuccess
+                    ? context.router.replace(const AppIndexScreenRoute())
+                    : null;
+                state is LogInFailed
+                    ? AppAlertWidgets.customAlert(context, state.message)
+                    : null;
+              },
+              builder: (context, state) {
+                return CustomButton(
+                  onPressed: () => context.read<AuthBloc>().add(LogInUser(
+                        email: 'maripbekoff@gmail.com',
+                        password: 'adminadmin',
+                        // email: emailController.text.replaceAll(' ', ''),
+                        // password: passwordController.text.replaceAll(' ', ''),
+                      )),
+                  text: state is LogInLoading ? 'Загрузка...' : 'Войти',
+                );
+              },
+            ),
+            const ColumnSpacer(1.9),
+            CustomButton(
+              onPressed: () =>
+                  AppAlertWidgets.customAlert(context, AuthAlertText.register),
+              text: 'Зарегистрироваться',
+            ),
+          ],
+        ),
       ),
     );
   }

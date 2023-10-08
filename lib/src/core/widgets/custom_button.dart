@@ -1,6 +1,5 @@
 import 'package:code_union/src/core/resources/app_colors.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   final Function() onPressed;
@@ -18,14 +17,17 @@ class CustomButton extends StatelessWidget {
       child: CupertinoButton(
         color: AppColors.purpleColor,
         onPressed: onPressed,
+        borderRadius: const BorderRadius.all(Radius.circular(6)),
         child: Padding(
           padding: const EdgeInsets.all(5),
           child: Text(
             text,
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium
-                ?.copyWith(color: AppColors.whiteColor),
+            style: const TextStyle(
+              color: AppColors.whiteColor,
+              fontFamily: 'Manrope',
+              fontWeight: FontWeight.w700,
+              fontSize: 16,
+            ),
           ),
         ),
       ),

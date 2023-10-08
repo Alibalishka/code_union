@@ -20,11 +20,14 @@ class NavbarWidget extends StatelessWidget {
 
     return BottomAppBar(
       elevation: 0,
-      child: Container(
-        color: AppColors.whiteColor,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: buttons,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 5),
+        child: Container(
+          color: AppColors.whiteColor,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: buttons,
+          ),
         ),
       ),
     );
@@ -47,7 +50,6 @@ class _NavbarItemFactory {
           : tabs.setActiveIndex(index),
       child: SizedBox(
         width: MediaQuery.of(context).size.width / 5,
-        // width: context.mediaQuery.size.width / 5,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
@@ -58,15 +60,20 @@ class _NavbarItemFactory {
               color: index == current
                   ? AppColors.purpleColor
                   : AppColors.blacColor,
+              height: 18,
             ),
             const ColumnSpacer(0.8),
             Text(
               name,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: index == current
-                      ? AppColors.purpleColor
-                      : AppColors.blacColor),
+                color: index == current
+                    ? AppColors.purpleColor
+                    : AppColors.blacColor,
+                fontFamily: 'Manrope',
+                fontWeight: FontWeight.w400,
+                fontSize: 10,
+              ),
             )
           ],
         ),
@@ -74,7 +81,6 @@ class _NavbarItemFactory {
     );
   }
 
-  // ignore: member-ordering-extended
   Future<void> _popUntilRoot(TabsRouter tabsRouter) async {
     // ignore: deprecated_member_use
     if (tabsRouter.current.router.canPopSelfOrChildren) {
