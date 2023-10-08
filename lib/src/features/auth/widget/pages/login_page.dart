@@ -62,10 +62,10 @@ class _LoginScreenState extends State<LoginScreen> {
               builder: (context, state) {
                 return CustomButton(
                   onPressed: () => context.read<AuthBloc>().add(LogInUser(
-                        email: 'maripbekoff@gmail.com',
-                        password: 'adminadmin',
-                        // email: emailController.text.replaceAll(' ', ''),
-                        // password: passwordController.text.replaceAll(' ', ''),
+                        // email: 'maripbekoff@gmail.com',
+                        // password: 'adminadmin',
+                        email: emailController.text.replaceAll(' ', ''),
+                        password: passwordController.text.replaceAll(' ', ''),
                       )),
                   text: state is LogInLoading ? 'Загрузка...' : 'Войти',
                 );
